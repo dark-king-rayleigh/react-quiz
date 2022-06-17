@@ -5,6 +5,7 @@ const Questions: React.FC<{ question: Question; questionIndex: number }> = ({
   question,
   questionIndex,
 }) => {
+  const [selected, setSelected] = React.useState<string>("");
   return (
     <div className="">
       <div className="flex flex-col gap-y-6 md:flex-row bg-primary text-white font-bold p-4 px-6 rounded-xl">
@@ -20,7 +21,25 @@ const Questions: React.FC<{ question: Question; questionIndex: number }> = ({
             return (
               <button
                 key={index}
-                className="px-4 py-2 m-2 w-full border-4 rounded-3xl border-secondary hover:bg-secondary transition-all duration-200"
+                className={`button m-2 w-full border-4 rounded-3xl border-secondary disabled:bg-gray-400 disabled:cursor-not-allowed  ${
+                  selected
+                    ? question.answer === opt
+                      ? "!bg-green-600 !border-green-600 !hover:bg-green-600"
+                      : "bg-secondary"
+                    : ""
+                }
+                
+                ${
+                  selected && selected === opt && question.answer !== opt
+                    ? "!bg-red-500 border-red-500 hover:bg-red-500"
+                    : ""
+                }
+
+                `}
+                onClick={() => {
+                  setSelected(opt);
+                }}
+                disabled={selected.length > 1}
               >
                 {opt}
               </button>
@@ -30,12 +49,8 @@ const Questions: React.FC<{ question: Question; questionIndex: number }> = ({
       </div>
 
       <div className="w-full mt-4 flex gap-4 justify-end">
-        <button className="button hover:bg-secondary transition-all duration-300">
-          QUIT
-        </button>
-        <button className="button hover:bg-secondary transition-all duration-300">
-          NEXT
-        </button>
+        <button className="button ">QUIT</button>
+        <button className="button ">NEXT</button>
       </div>
     </div>
   );
