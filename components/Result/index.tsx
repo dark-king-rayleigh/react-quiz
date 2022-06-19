@@ -9,7 +9,7 @@ const Result: React.FC<{
 }> = ({ score, onSetScore, onSetShowResult, onSetQuestionIndex }) => {
   return (
     <div className="text-xl">
-      <h1>{score < 5 ? "Need more pratice" : "Congralutions !!!"}</h1>
+      <h1>{score < 5 ? "Need more pratice 😥" : "Congralutions !!! 🥳"}</h1>
       <h2>
         You scored {score} out of {questions.length}
       </h2>
