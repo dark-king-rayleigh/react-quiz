@@ -7,6 +7,8 @@ import { questions } from "../data/questions";
 
 const Home: NextPage = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [showResult, setShowResult] = useState(true);
+  const [score, setScore] = useState(0);
 
   return (
     <>
@@ -15,11 +17,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex w-full h-screen flex-col items-center justify-center text-center bg-secondary m-0 p-0">
-        <Questions
-          question={questions[questionIndex]}
-          questionIndex={questionIndex}
-        />
-        {/* <Result /> */}
+        {!showResult ? (
+          <Questions
+            question={questions[questionIndex]}
+            questionIndex={questionIndex}
+          />
+        ) : (
+          <Result
+            score={score}
+            onSetScore={setScore}
+            onSetShowResult={setShowResult}
+          />
+        )}
       </main>
     </>
   );
