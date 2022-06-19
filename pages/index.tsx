@@ -7,7 +7,7 @@ import { questions } from "../data/questions";
 
 const Home: NextPage = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
   return (
@@ -21,12 +21,16 @@ const Home: NextPage = () => {
           <Questions
             question={questions[questionIndex]}
             questionIndex={questionIndex}
+            onSetQuestionIndex={setQuestionIndex}
+            onSetShowResult={setShowResult}
+            onSetScore={setScore}
           />
         ) : (
           <Result
             score={score}
             onSetScore={setScore}
             onSetShowResult={setShowResult}
+            onSetQuestionIndex={setQuestionIndex}
           />
         )}
       </main>

@@ -5,7 +5,8 @@ const Result: React.FC<{
   score: number;
   onSetScore: Function;
   onSetShowResult: Function;
-}> = ({ score, onSetScore, onSetShowResult }) => {
+  onSetQuestionIndex: Function;
+}> = ({ score, onSetScore, onSetShowResult, onSetQuestionIndex }) => {
   return (
     <div className="text-xl">
       <h1>{score < 5 ? "Need more pratice" : "Congralutions !!!"}</h1>
@@ -17,6 +18,7 @@ const Result: React.FC<{
         onClick={() => {
           onSetScore(0);
           onSetShowResult(false);
+          onSetQuestionIndex(0);
         }}
       >
         Reset
